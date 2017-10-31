@@ -5,6 +5,30 @@
         <jsp-file>/section/que_es.jsp</jsp-file>
     </servlet>
     <servlet>
+        <servlet-name>ConsultarProyectosInscritos</servlet-name>
+        <jsp-file>/section/consultar_proyectos_inscritos.jsp</jsp-file>
+    </servlet>
+    <servlet>
+        <servlet-name>IncripcionEvaluador</servlet-name>
+        <jsp-file>/section/inscripcion_evaluador.jsp</jsp-file>
+    </servlet>
+    <servlet>
+        <servlet-name>Welcome</servlet-name>
+        <jsp-file>/section/welcome.jsp</jsp-file>
+    </servlet>
+    <servlet>
+        <servlet-name>InscripcionProyectos</servlet-name>
+        <jsp-file>/section/inscribir_proyecto.jsp</jsp-file>
+    </servlet>
+    <servlet>
+        <servlet-name>Inicio_Sesion</servlet-name>
+        <jsp-file>/section/iniciar_sesion.jsp</jsp-file>
+    </servlet>
+    <servlet>
+        <servlet-name>Contacto</servlet-name>
+        <jsp-file>/section/contacto.jsp</jsp-file>
+    </servlet>
+    <servlet>
         <servlet-name>Inscripcion</servlet-name>
         <jsp-file>/section/inscripcion.jsp</jsp-file>
     </servlet>
@@ -16,9 +40,47 @@
         <servlet-name>Objetivos</servlet-name>
         <jsp-file>/section/objetivos.jsp</jsp-file>
     </servlet>
+    <servlet>
+        <servlet-name>ControladorPersona</servlet-name>
+        <servlet-class>co.edu.ufps.ingsistemas.feriaproyectos.controlador.ControladorPersona</servlet-class>
+        <multipart-config>
+            <max-file-size>10485760</max-file-size>
+            <max-request-size>20971520</max-request-size>
+            <file-size-threshold>5242880</file-size-threshold>
+        </multipart-config>
+    </servlet>
+    <servlet>
+        <servlet-name>ControladorProyecto</servlet-name>
+        <servlet-class>co.edu.ufps.ingsistemas.feriaproyectos.controlador.ControladorProyecto</servlet-class>
+        <multipart-config>
+            <max-file-size>52428800</max-file-size>
+            <max-request-size>104857600</max-request-size>
+            <file-size-threshold>10485760</file-size-threshold>
+        </multipart-config>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Inicio</servlet-name>
         <url-pattern>/Inicio</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Welcome</servlet-name>
+        <url-pattern>/Welcome</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ConsultarProyectosInscritos</servlet-name>
+        <url-pattern>/ConsultarProyectosInscritos</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>IncripcionEvaluador</servlet-name>
+        <url-pattern>/IncripcionEvaluador</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Inicio_Sesion</servlet-name>
+        <url-pattern>/Inicio_Sesion</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Contacto</servlet-name>
+        <url-pattern>/Contacto</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>Objetivos</servlet-name>
@@ -29,8 +91,20 @@
         <url-pattern>/Inscripcion</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+        <servlet-name>InscripcionProyectos</servlet-name>
+        <url-pattern>/InscripcionProyectos</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>Galeria</servlet-name>
         <url-pattern>/Galeria</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ControladorPersona</servlet-name>
+        <url-pattern>/Controlador</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ControladorProyecto</servlet-name>
+        <url-pattern>/Proyecto</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

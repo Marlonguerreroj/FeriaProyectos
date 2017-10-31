@@ -1,4 +1,4 @@
-
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 <!DOCTYPE html>
 <!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
 <!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
@@ -15,6 +15,7 @@
         <!-- Web Fonts -->
         <link rel='stylesheet' type='text/css' href='//fonts.googleapis.com/css?family=Open+Sans:400,300,600&amp;subset=cyrillic,latin'>
         <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css">
+        <link type="text/css" rel="stylesheet" href="SweetAlert/sweetalert2.min.css">
         <link type="text/css" rel="stylesheet" href="css/ie8.min.css">
         <link type="text/css" rel="stylesheet" href="css/blocks.min.css">
         <link type="text/css" rel="stylesheet" href="css/plugins.min.css">
@@ -66,7 +67,7 @@
                         <div class="parallax-quote-in" style="padding: 0px;">
                             <div class="row">
                                 <div class="col-md-4 col-sm-4 col-xs-5">
-                                    <a href="./index.php">
+                                    <a>
                                         <img id="logo-header" src="rsc/img/logo_vertical_ingsistemas_ht180.png" alt="Logo Programa de Ingeniería de Sistemas" style="max-height:180px;">
                                     </a>
                                 </div>
@@ -96,23 +97,49 @@
                 <div class="collapse navbar-collapse mega-menu navbar-responsive-collapse">
                     <div class="containermenu">
                         <ul class="nav navbar-nav" style="float:left;">
-                            <li class="dropdown">
-                                <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">Presentación</a>
-                                <ul class="dropdown-menu">
-                                    <li><a style="cursor: pointer" onclick="redirect('Inicio')">¿Qué es?</a></li>
-                                    <li><a style="cursor: pointer" onclick="redirect('Objetivos')">Objetivos</a></li>
-                                    <li><a href="#">Quiénes</a></li>
-                                </ul>
-                            </li>
-                            <li class="nodropdown">
-                                <a style="cursor: pointer" onclick="redirect('Inscripcion')" class="dropdown-toggle" data-toggle="dropdown">Inscripción</a>
-                            </li>
-                            <li class="nodropdown">
-                                <a href="#" class="dropdown-toggle disabled" data-toggle="dropdown" >Contáctenos</a>
-                            </li>
-                            <li class="nodropdown">
-                                <a href="#" class="dropdown-toggle disabled" data-toggle="dropdown">Iniciar sesión</a>
-                            </li>
+                            <c:if test = "${persona == null}">
+                                <li class="dropdown">
+                                    <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">Presentación</a>
+                                    <ul class="dropdown-menu">
+                                        <li><a style="cursor: pointer" onclick="redirect('Inicio')">¿Qué es?</a></li>
+                                        <li><a style="cursor: pointer" onclick="redirect('Objetivos')">Objetivos</a></li>
+                                        <li><a href="#">Quiénes</a></li>
+                                    </ul>
+                                </li>
+                                <li class="nodropdown">
+                                    <a style="cursor: pointer" onclick="redirect('Inscripcion')" class="dropdown-toggle" data-toggle="dropdown">Inscripción</a>
+                                </li>
+                                <li class="nodropdown">
+                                    <a style="cursor: pointer" onclick="redirect('Contacto')" class="dropdown-toggle disabled" data-toggle="dropdown" >Contáctenos</a>
+                                </li>
+
+                                <li class="nodropdown">
+                                    <a style="cursor: pointer" onclick="redirect('Inicio_Sesion')" class="dropdown-toggle disabled" data-toggle="dropdown">Iniciar sesión</a>
+                                </li>
+                            </c:if>
+                            <c:if test = "${persona != null}">
+                                <li class="dropdown">
+                                    <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">Proyectos</a>
+                                    <ul class="dropdown-menu">
+                                        <li><a style="cursor: pointer" onclick="redirect('InscripcionProyectos')">Inscribir Proyecto</a></li>
+                                        <li><a style="cursor: pointer" onclick="redirect('ConsultarProyectosInscritos')">Consultar Proyectos Inscritos</a></li>
+                                        
+                                    </ul>
+                                </li>
+                                <li class="dropdown">
+                                    <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">Evaluadores</a>
+                                    <ul class="dropdown-menu">
+                                        <li><a style="cursor: pointer" onclick="redirect('IncripcionEvaluador')">Inscribir Evaluador</a></li>
+                                        <li><a style="cursor: pointer" onclick="redirect('Welcome')">Consultar Evaluadores Inscritos</a></li>
+                                        
+                                    </ul>
+                                </li>
+                                
+                                <li class="nodropdown">
+                                    <a href="Controlador?out=true" class="dropdown-toggle disabled" data-toggle="dropdown">Cerrar Sesión</a>
+                                </li>
+                            </c:if> 
+
                         </ul>
                     </div>
                 </div><!--/navbar-collapse-->
@@ -120,7 +147,12 @@
             <div class="container content profile">
                 <div class="row margin-bottom-30">
                     <div id="divSection">
-                        <jsp:include page="section/que_es.jsp" />
+                        <c:if test = "${persona == null}">
+                            <jsp:include page="Inicio" />
+                        </c:if>
+                        <c:if test = "${persona != null}">
+                            <jsp:include page="Welcome" />
+                        </c:if>
                     </div>
                 </div><!-- row margin-bottom-30-->
             </div><!--container content profile-->
@@ -142,6 +174,8 @@
         </div>
 
         <script type="text/javascript" src="js/js_front.js"></script>
+        <script type="text/javascript" src="SweetAlert/sweetalert2.min.js"></script>
+        <script type="text/javascript" src="js/js_back.js"></script>
         <script type="text/javascript" src="js/jquery.min.js"></script>
         <script type="text/javascript" src="js/jquery-migrate.min.js"></script>
         <script type="text/javascript" src="js/bootstrap.min.js"></script>
@@ -162,6 +196,8 @@
         <script type="text/javascript" src="js/owl-recent-works.min.js"></script>
         <script type="text/javascript" src="js/wow.min.js"></script>
         <script type="text/javascript" src="js/ufps.js"></script>
+        <script type="text/javascript" src="js/jquery.blockUI.js"></script>
+        
 
         <!--[if lt IE 9]>
           <script src="js/respond.js"></script>
